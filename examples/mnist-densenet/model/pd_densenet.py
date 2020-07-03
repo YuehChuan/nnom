@@ -117,8 +117,7 @@ def train(x_train, y_train, x_test, y_test, batch_size= 64, epochs = 100):
     predictions = Softmax()(x)
 
     model = Model(inputs=inputs, outputs=predictions)
-
-    model.compile(loss='categorical_crossentropy',
+    model.compile(loss='sparse_categorical_crossentropy',
                   optimizer='adam',
                   metrics=['accuracy'])
 
@@ -238,7 +237,7 @@ def main(weights='weights.h'):
         acc = history.history['acc']
         val_acc = history.history['val_acc']
         if(os.getenv('NNOM_ON_CI') == None):
-            plt.plot(raload_modelnge(0, epochs), acc, color='red', label='Training acc')
+            plt.plot(range(0, epochs), acc, color='red', label='Training acc')
             plt.plot(range(0, epochs), val_acc, color='green', label='Validation acc')
             plt.title('Training and validation accuracy')
             plt.xlabel('Epochs')
