@@ -47,12 +47,13 @@ IMG_SIZE=224
 
 
 def create_training_data():
+    training_data = []
     for category in CATEGORIES:  #
 
         path = os.path.join(DATADIR, category)  # create path
         class_num = CATEGORIES.index(category)  # get the classification  (0-3).
 
-        training_data = []
+
         for img in tqdm(os.listdir(path)):  # iterate over each image per dogs and cats
             try:
                 img_array = cv2.imread(os.path.join(path, img))  # convert to array
@@ -232,7 +233,7 @@ def main(weights='weights.h'):
         acc = history.history['acc']
         val_acc = history.history['val_acc']
         if(os.getenv('NNOM_ON_CI') == None):
-            plt.plot(range(0, epochs), acc, color='red', label='Training acc')
+            plt.plot(raload_modelnge(0, epochs), acc, color='red', label='Training acc')
             plt.plot(range(0, epochs), val_acc, color='green', label='Validation acc')
             plt.title('Training and validation accuracy')
             plt.xlabel('Epochs')
