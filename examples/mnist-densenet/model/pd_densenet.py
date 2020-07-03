@@ -182,9 +182,14 @@ def main(weights='weights.h'):
             X.append(features)
             Y.append(label)
 
+        X = np.asarray(X)
+        Y = np.asarray(Y)
         x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.33)
 
-        # print(x_train[0].reshape(-1, IMG_SIZE, IMG_SIZE, 1))
+        # add channel dimension for pd data
+        x_train = x_train.reshape(x_train.shape[0], x_train.shape[1], x_train.shape[2], 3).astype('float32')
+        x_test = x_test.reshape(x_test.shape[0], x_test.shape[1], x_test.shape[2], 3).astype('float32')
+        print(x_train[0].reshape(-1, IMG_SIZE, IMG_SIZE, 1))
     else:
         (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 
