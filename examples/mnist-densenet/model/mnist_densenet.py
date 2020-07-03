@@ -23,7 +23,7 @@ from keras.layers import *
 from keras.utils import to_categorical
 from keras.callbacks import ModelCheckpoint
 
-from nnom_utils import *
+from scripts.nnom_utils import *
 
 
 model_name = 'mnist_model.h5'
